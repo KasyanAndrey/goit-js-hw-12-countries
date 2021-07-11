@@ -1,9 +1,11 @@
-import API from './api-service.js';
+import API from './fetch-countries.js';
 import refs from './get-refs';
 import renderCountryCard from './country-cards.js';
 import renderCountriesList from './countries-list.js';
 
-refs.inputEl.addEventListener('input', onSearch);
+const debouncedonSearch = _.debounce(onSearch, 500);
+
+refs.inputEl.addEventListener('input', debouncedonSearch);
 
 function onSearch(e) {
   e.preventDefault();
@@ -14,7 +16,6 @@ function onSearch(e) {
   API.fetchCountries(valueSwatchEl)
     .then(country => {
       if (country.length === 1) {
-        refs.cardContainer.innerHTML = '';
         renderCountryCard(country);
       }
       if (country.length > 1) {
