@@ -30,7 +30,7 @@ function onSearch(evt) {
           renderCountriesList(country);
           onSpecificEnoughAlert();
         } else if (country.length > 10) {
-          renderCountriesList(country);
+          // renderCountriesList(country);
           onManyMatchesFound();
         } else if (country.status === 404) {
           onFetchError();
